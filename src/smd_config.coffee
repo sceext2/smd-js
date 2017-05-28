@@ -1,5 +1,8 @@
 # smd_config.coffee, smd-js/src/
 
+# SMD specification version
+SMD_SPEC_VERSION = '0.1.0'
+
 # smd const
 
 SMD_FILE_EXT = '.smd.txt'
@@ -56,6 +59,8 @@ SMD_AFTER_CHAR = {
 
 
 module.exports = {
+  SMD_SPEC_VERSION
+
   SMD_FILE_EXT
   SMD_FILE_ENCODING
   SMD_LINE_ENDING
