@@ -1,0 +1,24 @@
+{
+  "name": "smd_js",
+  "version": "0.1.0-1",
+  "license": "GPL-3.0+",
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "coffeescript": "next",
+    "less": "^2.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "watchify": "^3.9.0"
+  },
+  "dependencies": {
+    "bootstrap": "3",
+    "create-react-class": "^15.6.0",
+    "immutable": "^3.8.1",
+    "jquery": "^3.2.1",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.0",
+    "redux-thunk": "^2.2.0"
+  }
+}
