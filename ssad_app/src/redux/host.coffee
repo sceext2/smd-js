@@ -7,6 +7,14 @@ action = require './action'
 
 
 mapStateToProps = ($$state, props) ->
+  # welcome
+  wel_app_id = $$state.getIn ['welcome', 'app_id']
+  if ! wel_app_id?
+    wel_app_id = ''
+  wel_key = $$state.getIn ['welcome', 'key']
+  if ! wel_key?
+    wel_key = ''
+
   {
     # nav
     nav_state_welcome: $$state.getIn ['nav', 'page', 'welcome']
@@ -17,6 +25,11 @@ mapStateToProps = ($$state, props) ->
     nav_state_select_file_i: $$state.getIn ['nav', 'page', 'select_file_i']
     nav_state_select_file_o: $$state.getIn ['nav', 'page', 'select_file_o']
 
+    # welcome page
+    wel_app_id
+    wel_key
+    wel_error: $$state.getIn ['welcome', 'error']
+
     # TODO
   }
 
@@ -25,8 +38,6 @@ mapDispatchToProps = (dispatch, props) ->
     # nav
     nav_back: ->
       dispatch action.nav_back()
-    nav_goto_main: ->
-      dispatch action.nav_go 'main'
     nav_goto_about: ->
       dispatch action.nav_go 'about'
     nav_goto_input: ->
@@ -37,6 +48,14 @@ mapDispatchToProps = (dispatch, props) ->
       dispatch action.nav_go 'select_file_i'
     nav_goto_sfo: ->
       dispatch action.nav_go 'select_file_o'
+
+    # welcome page
+    on_wel_ok: ->
+      dispatch action.wel_check_key()
+    on_wel_change_id: (id) ->
+      dispatch action.wel_change_app_id(id)
+    on_wel_change_key: (key) ->
+      dispatch action.wel_change_key(key)
 
     # page main
     on_compile: ->

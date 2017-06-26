@@ -27,12 +27,20 @@ if composeWithDevTools?
   middleware = composeWithDevTools middleware
 store = createStore reducer, middleware
 
+util = require './util'
+
+_try_load_config = ->
+  value = util.get_config()
+  if value?
+    store.dispatch action.wel_change_app_id(value.app_id)
+    store.dispatch action.wel_change_key(value.ssad_key)
+    store.dispatch action.wel_check_key()
 
 O = cC {
   displayName: 'O'
 
   componentDidMount: ->
-    # TODO
+    _try_load_config()
   #componentWilUnmount: ->
 
   render: ->

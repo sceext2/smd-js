@@ -47,11 +47,26 @@ _check_init_state = ($$state) ->
 reducer = ($$state, action) ->
   $$o = _check_init_state $$state
   switch action.type
+    # nav
     when ac.NAV_BACK
       $$o = _nav_back $$o
     when ac.NAV_GO
       $$o = _nav_go $$o, action.payload
-    # TODO
+    # welcome page
+    when ac.WELCOME_CHANGE_APP_ID
+      $$o = $$o.setIn ['welcome', 'app_id'], action.payload
+    when ac.WELCOME_CHANGE_KEY
+      $$o = $$o.setIn ['welcome', 'key'], action.payload
+    #when ac.WELCOME_CHECK_KEY
+    when ac.WELCOME_KEY_OK
+      # update app_id / ssad_key
+      $$o = $$o.set 'app_id', $$o.getIn(['welcome', 'app_id'])
+      $$o = $$o.set 'ssad_key', $$o.getIn(['welcome', 'key'])
+      # clear key
+      $$o = $$o.setIn ['welcome', 'key'], null
+    when ac.WELCOME_KEY_ERR
+      # TODO improve error style ?
+      $$o = $$o.setIn ['welcome', 'error'], action.payload.toString()
   $$o
 
 # not use  redux.combineReducers

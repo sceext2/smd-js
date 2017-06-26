@@ -27,7 +27,12 @@ Host = cC {
           state: @props.nav_state_welcome
           },
           (cE PageWelcome, {
-            on_ok: @props.nav_goto_main
+            on_ok: @props.on_wel_ok
+            on_change_id: @props.on_wel_change_id
+            on_change_key: @props.on_wel_change_key
+            app_id: @props.wel_app_id
+            ssad_key: @props.wel_key
+            error: @props.wel_error
             })
         )
         # page main

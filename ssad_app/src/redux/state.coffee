@@ -16,6 +16,15 @@ init_state = {  # with Immutable
     current: 'welcome'  # current main page
     stack: [ 'welcome' ]  # stack navigation
   }
+  # app_id and ssad_key
+  app_id: null
+  ssad_key: null
+  # welcome input
+  welcome: {
+    app_id: 'smd_js'
+    key: ''
+    error: null
+  }
 
   # TODO
 }
