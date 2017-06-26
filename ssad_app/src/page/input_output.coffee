@@ -4,6 +4,12 @@
 { createElement: cE } = require 'react'
 cC = require 'create-react-class'
 
+{
+  FormGroup
+  FormControl
+  Alert
+} = require 'react-bootstrap'
+
 NavTop = require '../sub/nav_top'
 NullFill = require '../sub/null_fill'
 MainButton = require '../sub/main_button'
@@ -11,6 +17,17 @@ MainButton = require '../sub/main_button'
 
 PageIO = cC {
   displayName: 'PageIO'
+
+  _render_form: ->
+    # TODO
+    (cE 'form', null,
+      (cE FormGroup, null,
+        (cE FormControl, {
+          componentClass: 'textarea'
+          placeholder: 'TODO'
+          })
+      )
+    )
 
   render: ->
     (cE 'div', {
@@ -23,8 +40,7 @@ PageIO = cC {
       (cE 'div', {
         className: 'page_body'
         },
-        # TODO
-        (cE NullFill)
+        @_render_form()
         (cE MainButton, {
           text: 'Select file'
           right: true

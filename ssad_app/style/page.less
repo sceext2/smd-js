@@ -15,5 +15,33 @@
     }
   }
 
+  // page input_output
+  .page_io {
+    form {
+      flex: 1;
+      margin: 1rem;
+
+      display: flex;
+      flex-direction: column;
+
+      .form-group {
+        flex: 1;
+
+        display: flex;
+        flex-direction: column;
+
+        textarea {
+          flex: 1;
+          resize: none;
+
+          border-color: @co_text_sec;
+          color: @co_bg_input;
+          // FIXME
+          background-color: #222;
+        }
+      }
+    }
+  }
+
   // TODO
 }
