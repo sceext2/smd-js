@@ -5,6 +5,7 @@
 cC = require 'create-react-class'
 
 NavTop = require '../sub/nav_top'
+SsadFileList = require '../sub/ssad_file_list'
 
 
 PageSelectFile = cC {
@@ -23,7 +24,16 @@ PageSelectFile = cC {
       (cE 'div', {
         className: 'page_body'
         },
-        # TODO
+        (cE SsadFileList, {
+          app_id: @props.app_id
+          ssad_key: @props.ssad_key
+          # TODO
+          })
+        (cE 'div', {
+          className: 'foot'
+          },
+          # TODO
+        )
       )
     )
 }

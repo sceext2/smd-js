@@ -25,6 +25,10 @@ mapStateToProps = ($$state, props) ->
     nav_state_select_file_i: $$state.getIn ['nav', 'page', 'select_file_i']
     nav_state_select_file_o: $$state.getIn ['nav', 'page', 'select_file_o']
 
+    # for select_file page
+    app_id: $$state.get 'app_id'
+    ssad_key: $$state.get 'ssad_key'
+
     # welcome page
     wel_app_id
     wel_key

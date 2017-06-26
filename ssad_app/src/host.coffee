@@ -81,6 +81,8 @@ Host = cC {
           (cE PageSelectFile, {
             on_back: @props.nav_back
             on_reset: @props.on_reset_sfi
+            app_id: @props.app_id
+            ssad_key: @props.ssad_key
             })
         )
         # page select file (o)
@@ -90,6 +92,8 @@ Host = cC {
           (cE PageSelectFile, {
             on_back: @props.nav_back
             on_reset: @props.on_reset_sfo
+            app_id: @props.app_id
+            ssad_key: @props.ssad_key
             })
         )
       )
