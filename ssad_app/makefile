@@ -6,6 +6,11 @@ JS_LIB_X= -x react -x react-dom -x create-react-class -x react-redux -x immutabl
 
 dev_dist: bundle css
 	cp ./node_modules/jquery/dist/jquery.js dist/
+
+	cp ./node_modules/bootstrap/dist/css/bootstrap.css dist/
+	cp ./node_modules/bootstrap/dist/css/bootstrap-theme.css dist/
+	cp ./node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2 dist/
+
 	cp static/smd_js.dev.html dist/
 .PHONY: dev_dist
 
@@ -24,9 +29,6 @@ js:
 
 css:
 	./node_modules/.bin/lessc style/main.less dist/main.css
-	cp ./node_modules/bootstrap/dist/css/bootstrap.css dist/
-	cp ./node_modules/bootstrap/dist/css/bootstrap-theme.css dist/
-	cp ./node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2 dist/
 .PHONY: css
 
 
