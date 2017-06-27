@@ -1,0 +1,28 @@
+{
+  "ssad_app_spec": "0.1.0",
+
+  "id": "smd_js",
+  "name": "smd-js GUI",
+  "version": "0.1.0-1",
+
+  "main": "static/smd_js.dev.html",
+  "pub_root": {
+    "static": {
+      "sub_root": "app",
+      "path": "/dist"
+    }
+  },
+  "ext_to_mime": {
+    "html": "text/html",
+    "js": "text/javascript",
+    "css": "text/css",
+
+    "": "application/octet-stream"
+  },
+
+  "license": "GNU GPL v3+",
+  "author": "sceext <sceext@foxmail.com>",
+  "home": "https://github.com/sceext2/smd-js",
+
+  "_test": true
+}

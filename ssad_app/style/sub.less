@@ -1,0 +1,225 @@
+// sub.less, smd-js/ssad_app/style/
+
+.smd_js {
+  // nav and host
+  .host, .nav_host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav_box {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    transition-property: left;
+    transition-duration: @trans_t;
+
+    &.main {
+      left: 0;
+    }
+    &.left {
+      left: -100%;
+    }
+    &.right {
+      left: 100%;
+    }
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  // nav_top and page_body
+  .nav_top {
+    flex: initial;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background-color: @co_bg_nav;
+    height: @nav_top_height;
+    font-size: 2.5rem;
+
+    .title {
+      flex: 1;
+
+      color: @co_title;
+      &.center {
+        text-align: center;
+      }
+    }
+    // back / right button
+    .back, .right {
+      flex: initial;
+      flex-shrink: 0;
+      color: @co_text_sec;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      height: 100%;
+
+      cursor: pointer;
+      transition-property: background-color;
+      transition-duration: @trans_t;
+      &:hover {
+        transition-duration: 0ms;
+        background-color: mix(@co_bg_nav, @co_bg_btn_touch, 50%);
+      }
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .back {
+      padding-right: 1.5rem;
+    }
+    .right {
+      padding-left: 1.5rem;
+    }
+    .button {
+      padding-right: 1rem;
+    }
+  }
+  .page_body {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+
+    background-color: @co_bg;
+  }
+
+  // null_fill
+  .sub_null_fill {
+    flex: 1;
+  }
+  // main_button
+  .sub_main_button {
+    flex: initial;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: @nav_top_height;
+    font-size: 2.5rem;
+    background-color: @co_btn_primary;
+
+    cursor: pointer;
+    transition-property: background-color;
+    transition-duration: @trans_t;
+    &:hover {
+      background-color: mix(@co_btn_primary, @co_bg_btn_touch, 50%);
+      transition-duration: 0ms;
+    }
+
+    .text {
+      color: @co_text_btn;
+      flex: 1;
+      text-align: center;
+    }
+    .right {
+      color: @co_text_sec;
+      flex: initial;
+      text-align: center;
+      padding-right: 1rem;
+    }
+  }
+  // sub_item
+  .sub_item {
+    flex: initial;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: @nav_top_height;
+    font-size: 2.5rem;
+    background-color: @co_bg_btn;
+    // bottom border
+    border-bottom-style: solid;
+    border-bottom-width: 0.1rem;
+    border-bottom-color: @co_bg_sec;
+
+    cursor: pointer;
+    transition-property: background-color;
+    transition-duration: @trans_t;
+    &:hover {
+      background-color: mix(@co_bg_btn, @co_bg_btn_touch, 50%);
+      transition-duration: 0ms;
+    }
+
+    .left {
+      color: @co_text_btn;
+      flex: 1;
+      padding-left: 1rem;
+      font-size: 0.8em;
+    }
+    .right_text {
+      color: mix(@co_text, @co_text_sec, 50%);
+      flex: initial;
+      font-size: 0.8em;
+      padding-left: 1rem;
+      word-break: break-all;
+
+      &.small {
+        font-size: 0.6em;
+      }
+    }
+    .right {
+      color: @co_text_sec;
+      flex: initial;
+      text-align: center;
+      padding-right: 1rem;
+      padding-left: 1.5rem;
+    }
+  }
+
+  // ssad_file_list
+  .ssad_file_list {
+    flex: 1;
+    position: relative;
+    top: 0;
+    left: 0;
+
+    iframe {
+      margin: 0;
+      border-style: none;
+      padding: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+    }
+  }
+
+  // logs
+  .sub_log {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin: 0;
+    overflow: auto;
+
+    li {
+      display: block;
+      margin: 0;
+      padding: 0;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      word-break: break-all;
+
+      &:before {
+        content: '+';
+        padding-right: 0.5em;
+      }
+    }
+  }
+}

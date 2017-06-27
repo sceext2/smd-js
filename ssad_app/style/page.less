@@ -1,0 +1,106 @@
+// page.less, smd-js/ssad_app/style/
+
+.smd_js {
+  // page boxs
+  .page_welcome, .page_main, .page_about, .page_io, .page_select_file {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // page welcome
+  .page_welcome {
+    .pad {
+      margin: 1rem;
+    }
+  }
+
+  // page input_output
+  .page_io {
+    form {
+      flex: 1;
+      margin: 1rem;
+
+      display: flex;
+      flex-direction: column;
+
+      .form-group {
+        flex: 1;
+
+        display: flex;
+        flex-direction: column;
+
+        textarea {
+          flex: 1;
+          resize: none;
+          white-space: pre;
+
+          border-color: @co_text_sec;
+          color: @co_text_input;
+          // FIXME
+          background-color: #222;
+        }
+      }
+    }
+
+    .output_to {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+
+      .label {
+        color: @co_text_sec;
+        font-size: 1.5rem;
+      }
+      .value {
+        color: @co_text;
+        font-size: 1.5rem;
+        word-break: break-all;
+      }
+    }
+  }
+
+  // page select_file
+  .page_select_file {
+    .foot {
+      flex: initial;
+      flex-shrink: 0;
+      padding: 1rem;
+      padding-top: 0;
+
+      background-color: @co_bg_nav;
+      .form-group {
+        margin: 0;
+      }
+      .path {
+        margin-bottom: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .label {
+          color: @co_text_sec;
+          margin-left: 0;
+          padding-left: 0;
+          flex: initial;
+          flex-shrink: 0;
+        }
+        .value {
+          color: @co_text;
+          word-break: break-all;
+          font-size: 0.8em;
+          flex: 1;
+        }
+      }
+
+      button {
+        width: 5em;
+      }
+    }
+  }
+
+  // TODO about page
+}
