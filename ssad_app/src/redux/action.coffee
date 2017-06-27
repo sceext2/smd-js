@@ -57,6 +57,9 @@ wel_check_key = ->
     $$state = getState()
     app_id = $$state.getIn ['welcome', 'app_id']
     key = $$state.getIn ['welcome', 'key']
+    # try ssad_key
+    if ((! key?) || ('' == key)) && $$state.get('ssad_key')?
+      key = $$state.get 'ssad_key'
     # current page
     current = $$state.getIn ['nav', 'current']
     # check key

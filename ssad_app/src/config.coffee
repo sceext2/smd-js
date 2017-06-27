@@ -1,7 +1,7 @@
 # config.coffee, smd-js/ssad_app/src/
 
 
-P_VERSION = 'smd-js GUI version 0.1.0-1 test20170627 1200'
+P_VERSION = 'smd-js GUI version 0.1.0-1 test20170627 1221'
 
 SSAD_SERVER_ROOT = '/ssad201706/key/'
 

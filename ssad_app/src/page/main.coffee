@@ -22,6 +22,7 @@ PageMain = cC {
         title_center: true
         right: true
         on_click_right: @props.on_goto_about
+        on_back: @props.on_back
         })
       (cE 'div', {
         className: 'page_body'

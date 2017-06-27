@@ -44,6 +44,7 @@ Host = cC {
             on_goto_input: @props.nav_goto_input
             on_goto_output: @props.nav_goto_output
             on_compile: @props.on_compile
+            on_back: @props.nav_back
             })
         )
         # page about

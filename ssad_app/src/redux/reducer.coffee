@@ -88,7 +88,10 @@ reducer = ($$state, action) ->
     when ac.WELCOME_KEY_OK
       # update app_id / ssad_key
       $$o = $$o.set 'app_id', $$o.getIn(['welcome', 'app_id'])
-      $$o = $$o.set 'ssad_key', $$o.getIn(['welcome', 'key'])
+      key = $$o.getIn ['welcome', 'key']
+      # if key empty
+      if key? && (key != '')
+        $$o = $$o.set 'ssad_key', key
       # clear key
       $$o = $$o.setIn ['welcome', 'key'], null
     when ac.WELCOME_KEY_ERR
