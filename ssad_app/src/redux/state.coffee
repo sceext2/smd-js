@@ -32,7 +32,7 @@ init_state = {  # with Immutable
     root_path: null
     path: null
     filename: null
-    error: null
+    error: null  # load_input_error here
   }
   sfo: {  # select output file
     app_id: null

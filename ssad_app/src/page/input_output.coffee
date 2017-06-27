@@ -58,6 +58,21 @@ PageIO = cC {
         )
       )
 
+  _render_error: ->
+    if @props.error_info?
+      (cE 'div', {
+        className: 'error_info'
+        },
+        (cE Alert, {
+          bsStyle: 'danger'
+          },
+          (cE 'strong', null,
+            'Error '
+          )
+          @props.error_info
+        )
+      )
+
   render: ->
     (cE 'div', {
       className: 'page_io'
@@ -70,6 +85,7 @@ PageIO = cC {
         className: 'page_body'
         },
         @_render_form()
+        @_render_error()
         (cE MainButton, {
           text: 'Select file'
           right: true

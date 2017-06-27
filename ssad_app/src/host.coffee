@@ -67,6 +67,7 @@ Host = cC {
             title: 'Input'
             placeholder: 'input text'
             text: @props.text_input
+            error_info: @props.input_error
 
             on_back: @props.nav_back
             on_goto_select_file: @props.nav_goto_sfi

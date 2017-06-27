@@ -28,6 +28,7 @@ SF_OK = 'sf_ok'  # sfi OK
 # input / output
 TEXT_CHANGE_INPUT = 'text_change_input'
 TEXT_CHANGE_OUTPUT = 'text_change_output'
+TEXT_LOAD_INPUT_ERROR = 'text_load_input_error'
 
 
 # nav
@@ -124,9 +125,24 @@ sf_ok = ->
     dispatch {
       type: SF_OK
     }
-    # TODO load sfi
-    # TODO
-    await return
+    # load sfi (text file)
+    $$state = getState()
+    opt = {
+      app_id: $$state.getIn ['sfi', 'app_id']
+      sub_root: $$state.getIn ['sfi', 'sub_root']
+      root_path: $$state.getIn ['sfi', 'root_path']
+      path: $$state.getIn ['sfi', 'path']
+      filename: $$state.getIn ['sfi', 'filename']
+
+      ssad_key: $$state.get 'ssad_key'
+    }
+    try
+      text = await ssad_server_api.load_text_file path.join(opt.path, opt.filename), opt
+      dispatch change_input(text)
+      # go back to input page
+      dispatch nav_back()
+    catch e
+      dispatch load_input_err(e)
 
 # input/output
 change_input = (text) ->
@@ -139,6 +155,13 @@ change_output = (text) ->
   {
     type: TEXT_CHANGE_OUTPUT
     payload: text
+  }
+
+load_input_err = (e) ->
+  {
+    type: TEXT_LOAD_INPUT_ERROR
+    error: true
+    payload: e
   }
 
 
@@ -159,6 +182,7 @@ module.exports = {
 
   TEXT_CHANGE_INPUT
   TEXT_CHANGE_OUTPUT
+  TEXT_LOAD_INPUT_ERROR
 
   nav_back
   nav_go
@@ -176,4 +200,5 @@ module.exports = {
 
   change_input
   change_output
+  load_input_err
 }

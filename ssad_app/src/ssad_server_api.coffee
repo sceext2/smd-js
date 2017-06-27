@@ -1,5 +1,7 @@
 # ssad_server_api.coffee, smd-js/ssad_app/src/
 
+path = require 'path'
+
 async_ = require './async'
 config = require './config'
 
@@ -10,7 +12,16 @@ check_key = (app_id, ssad_key) ->
     ssad_key
   }
 
+load_text_file = (filename, opt) ->
+  sub_path = path.relative opt.root_path, filename
+  url = config.SSAD_SERVER_ROOT + opt.app_id + '/'
+  url = path.join url, opt.sub_root, sub_path
+  await async_.get_text url, {
+    ssad_key: opt.ssad_key
+  }
+
 
 module.exports = {
   check_key  # async
+  load_text_file  # async
 }

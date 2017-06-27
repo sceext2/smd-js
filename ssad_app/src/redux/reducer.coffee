@@ -40,9 +40,13 @@ _nav_go = ($$o, page) ->
 
 # select file
 _sf_reset = ($$o, payload) ->
-  # reset filename and error ?
+  # reset filename and error
   $$o = $$o.setIn [payload, 'filename'], null
   $$o = $$o.setIn [payload, 'error'], null
+  # sfi reset text_input
+  if 'sfi' == payload
+    $$o = $$o.set 'text_input', ''
+  $$o
 
 _sf_msg = ($$o, payload) ->
   t = payload.type  # 'sfi' / 'sfo'
@@ -105,12 +109,17 @@ reducer = ($$state, action) ->
     when ac.SF_CHANGE_FILENAME
       p = action.payload
       $$o = $$o.setIn [p.type, 'filename'], p.filename
-    #when ac.SF_OK  # TODO
+    when ac.SF_OK  # sfi OK button
+      # clear error
+      $$o = $$o.setIn ['sfi', 'error'], null
     # input/output
     when ac.TEXT_CHANGE_INPUT
       $$o = $$o.set 'text_input', action.payload
     when ac.TEXT_CHANGE_OUTPUT
       $$o = $$o.set 'text_output', action.payload
+    when ac.TEXT_LOAD_INPUT_ERROR
+      # TODO improve error style ?
+      $$o = $$o.setIn ['sfi', 'error'], action.payload.toString()
   $$o
 
 # not use  redux.combineReducers

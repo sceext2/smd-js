@@ -50,6 +50,7 @@ mapStateToProps = ($$state, props) ->
     # input/output page
     text_input: $$state.get 'text_input'
     text_output: $$state.get 'text_output'
+    input_error: $$state.getIn ['sfi', 'error']
 
     # select file
     path_sfi
