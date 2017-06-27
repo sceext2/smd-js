@@ -51,11 +51,16 @@ wel_check_key = ->
     $$state = getState()
     app_id = $$state.getIn ['welcome', 'app_id']
     key = $$state.getIn ['welcome', 'key']
+    # current page
+    current = $$state.getIn ['nav', 'current']
     # check key
     try
       await ssad_server_api.check_key(app_id, key)
     catch e
       dispatch wel_key_err(e)
+      if current != 'welcome'
+        # ERR: go back to welcome page
+        dispatch nav_back()
       return
     # OK
     dispatch wel_key_ok()
@@ -65,7 +70,8 @@ wel_check_key = ->
       ssad_key: key
     }
     # goto main page
-    dispatch nav_go('main')
+    if current != 'main'
+      dispatch nav_go('main')
 
 wel_key_ok = ->
   {

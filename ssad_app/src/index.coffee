@@ -35,6 +35,9 @@ _try_load_config = ->
     store.dispatch action.wel_change_app_id(value.app_id)
     store.dispatch action.wel_change_key(value.ssad_key)
     store.dispatch action.wel_check_key()
+  else
+    # go back to welcome page
+    store.dispatch action.nav_back()
 
 O = cC {
   displayName: 'O'
