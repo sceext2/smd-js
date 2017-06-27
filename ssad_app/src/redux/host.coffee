@@ -91,7 +91,7 @@ mapDispatchToProps = (dispatch, props) ->
 
     # page main
     on_compile: ->
-      # TODO
+      dispatch action.compile()
 
     # input/output page
     on_change_input: (text) ->

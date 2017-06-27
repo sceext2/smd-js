@@ -4,7 +4,7 @@ path = require 'path'
 
 util = require '../util'
 ssad_server_api = require '../ssad_server_api'
-event_api = require '../event_api'
+smd_lib = require '../smd_lib'
 
 # action types
 
@@ -31,6 +31,9 @@ TEXT_CHANGE_OUTPUT = 'text_change_output'
 TEXT_LOAD_INPUT_ERROR = 'text_load_input_error'
 # log
 TEXT_LOG = 'text_log'
+
+# compile
+COMPILE = 'compile'
 
 
 # nav
@@ -173,6 +176,23 @@ log = (text) ->
     type: TEXT_LOG
     payload: text
   }
+# compile
+compile = ->
+  (dispatch, getState) ->
+    _log = (text) ->
+      dispatch log(text)
+
+    $$state = getState()
+    raw_text = $$state.get 'text_input'
+
+    _log "DEBUG: start compile .. . "
+    # TODO process error ?
+    result = await smd_lib.compile raw_text, _log
+    _log "DEBUG: [ OK ] compile done."
+    # save result
+    dispatch change_output(result)
+    # TODO save result to output file ?
+
 
 module.exports = {
   NAV_BACK
@@ -193,6 +213,7 @@ module.exports = {
   TEXT_CHANGE_OUTPUT
   TEXT_LOAD_INPUT_ERROR
   TEXT_LOG
+  COMPILE
 
   nav_back
   nav_go
@@ -212,4 +233,5 @@ module.exports = {
   change_output
   load_input_err
   log
+  compile  # thunk
 }
