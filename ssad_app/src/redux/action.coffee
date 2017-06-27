@@ -29,6 +29,8 @@ SF_OK = 'sf_ok'  # sfi OK
 TEXT_CHANGE_INPUT = 'text_change_input'
 TEXT_CHANGE_OUTPUT = 'text_change_output'
 TEXT_LOAD_INPUT_ERROR = 'text_load_input_error'
+# log
+TEXT_LOG = 'text_log'
 
 
 # nav
@@ -139,6 +141,7 @@ sf_ok = ->
     try
       text = await ssad_server_api.load_text_file path.join(opt.path, opt.filename), opt
       dispatch change_input(text)
+      # TODO auto-gen output filename
       # go back to input page
       dispatch nav_back()
     catch e
@@ -164,6 +167,12 @@ load_input_err = (e) ->
     payload: e
   }
 
+# log
+log = (text) ->
+  {
+    type: TEXT_LOG
+    payload: text
+  }
 
 module.exports = {
   NAV_BACK
@@ -183,6 +192,7 @@ module.exports = {
   TEXT_CHANGE_INPUT
   TEXT_CHANGE_OUTPUT
   TEXT_LOAD_INPUT_ERROR
+  TEXT_LOG
 
   nav_back
   nav_go
@@ -201,4 +211,5 @@ module.exports = {
   change_input
   change_output
   load_input_err
+  log
 }

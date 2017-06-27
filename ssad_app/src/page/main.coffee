@@ -6,7 +6,7 @@ cC = require 'create-react-class'
 
 NavTop = require '../sub/nav_top'
 SubItem = require '../sub/sub_item'
-NullFill = require '../sub/null_fill'
+Log = require '../sub/log'
 MainButton = require '../sub/main_button'
 
 
@@ -55,8 +55,10 @@ PageMain = cC {
           right_text: @_output_state()
           on_click: @props.on_goto_output
           })
-        # TODO logs ?
-        (cE NullFill)
+        # logs
+        (cE Log, {
+          logs: @props.logs
+          })
         (cE MainButton, {
           text: 'Compile'
           on_click: @props.on_compile

@@ -59,6 +59,9 @@ mapStateToProps = ($$state, props) ->
     filename_sfo
     # TODO select file error ?
 
+    # logs
+    logs: $$state.get('log').toJS()
+
     # TODO
   }
 

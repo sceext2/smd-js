@@ -45,6 +45,8 @@ init_state = {  # with Immutable
   # input / output
   text_input: ''
   text_output: ''
+  # logs
+  log: []
 
   # TODO
 }

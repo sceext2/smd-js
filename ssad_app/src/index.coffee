@@ -27,7 +27,9 @@ if composeWithDevTools?
   middleware = composeWithDevTools middleware
 store = createStore reducer, middleware
 
+
 util = require './util'
+ssad_server_api = require './ssad_server_api'
 
 _try_load_config = ->
   value = util.get_config()
@@ -44,6 +46,9 @@ O = cC {
 
   componentDidMount: ->
     _try_load_config()
+    # log server version
+    v = await ssad_server_api.get_version()
+    store.dispatch action.log("#{v.ssad_server}")
   #componentWilUnmount: ->
 
   render: ->

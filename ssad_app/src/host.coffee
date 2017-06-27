@@ -49,6 +49,7 @@ Host = cC {
             text_input: @props.text_input
             output_path: @props.path_sfo
             output_filename: @props.filename_sfo
+            logs: @props.logs
             })
         )
         # page about

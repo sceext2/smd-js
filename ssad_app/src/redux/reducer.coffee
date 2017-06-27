@@ -29,7 +29,7 @@ _nav_go = ($$o, page) ->
   # push current to stack
   current = $$o.getIn ['nav', 'current']
   $$o = $$o.updateIn ['nav', 'stack'], ($$stack) ->
-    $$o = $$stack.push current
+    $$stack.push current
   # make current left
   $$o = $$o.setIn ['nav', 'page', current], 'left'
   # make page main
@@ -120,6 +120,10 @@ reducer = ($$state, action) ->
     when ac.TEXT_LOAD_INPUT_ERROR
       # TODO improve error style ?
       $$o = $$o.setIn ['sfi', 'error'], action.payload.toString()
+    # logs
+    when ac.TEXT_LOG
+      $$o = $$o.update 'log', ($$log) ->
+        $$log.push action.payload
   $$o
 
 # not use  redux.combineReducers

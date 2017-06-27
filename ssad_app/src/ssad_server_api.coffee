@@ -5,6 +5,8 @@ path = require 'path'
 async_ = require './async'
 config = require './config'
 
+get_version = ->
+  await async_.get_json config.SSAD_SERVER_VERSION, {}
 
 check_key = (app_id, ssad_key) ->
   url = config.SSAD_SERVER_ROOT + app_id + '/'
@@ -22,6 +24,7 @@ load_text_file = (filename, opt) ->
 
 
 module.exports = {
+  get_version  # async
   check_key  # async
   load_text_file  # async
 }
