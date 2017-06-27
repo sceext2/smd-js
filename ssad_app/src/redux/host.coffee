@@ -14,6 +14,19 @@ mapStateToProps = ($$state, props) ->
   wel_key = $$state.getIn ['welcome', 'key']
   if ! wel_key?
     wel_key = ''
+  # select file
+  path_sfi = $$state.getIn ['sfi', 'path']
+  path_sfo = $$state.getIn ['sfo', 'path']
+  filename_sfi = $$state.getIn ['sfi', 'filename']
+  filename_sfo = $$state.getIn ['sfo', 'filename']
+  if ! path_sfi?
+    path_sfi = ''
+  if ! path_sfo?
+    path_sfo = ''
+  if ! filename_sfi?
+    filename_sfi = ''
+  if ! filename_sfo?
+    filename_sfo = ''
 
   {
     # nav
@@ -33,6 +46,13 @@ mapStateToProps = ($$state, props) ->
     wel_app_id
     wel_key
     wel_error: $$state.getIn ['welcome', 'error']
+
+    # select file
+    path_sfi
+    path_sfo
+    filename_sfi
+    filename_sfo
+    # TODO select file error ?
 
     # TODO
   }
@@ -67,9 +87,21 @@ mapDispatchToProps = (dispatch, props) ->
 
     # page select file
     on_reset_sfi: ->
-      # TODO
+      dispatch action.sf_reset 'sfi'
     on_reset_sfo: ->
-      # TODO
+      dispatch action.sf_reset 'sfo'
+    on_msg_sfi: (msg) ->
+      dispatch action.sf_msg 'sfi', msg
+    on_msg_sfo: (msg) ->
+      dispatch action.sf_msg 'sfo', msg
+    on_change_filename_sfi: (text) ->
+      dispatch action.sf_change_filename 'sfi', text
+    on_change_filename_sfo: (text) ->
+      dispatch action.sf_change_filename 'sfo', text
+    on_ok_sfi: ->
+      dispatch action.sf_ok 'sfi'
+    on_ok_sfo: ->
+      dispatch action.sf_ok 'sfo'
   }
 
 O = connect(mapStateToProps, mapDispatchToProps)(Host)

@@ -83,6 +83,11 @@ Host = cC {
             on_reset: @props.on_reset_sfi
             app_id: @props.app_id
             ssad_key: @props.ssad_key
+            on_msg: @props.on_msg_sfi
+            on_change_filename: @props.on_change_filename_sfi
+            on_ok: @props.on_ok_sfi
+            path: @props.path_sfi
+            filename: @props.filename_sfi
             })
         )
         # page select file (o)
@@ -94,6 +99,11 @@ Host = cC {
             on_reset: @props.on_reset_sfo
             app_id: @props.app_id
             ssad_key: @props.ssad_key
+            on_msg: @props.on_msg_sfo
+            on_change_filename: @props.on_change_filename_sfo
+            on_ok: @props.on_ok_sfo
+            path: @props.path_sfo
+            filename: @props.filename_sfo
             })
         )
       )

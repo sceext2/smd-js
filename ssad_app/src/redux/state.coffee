@@ -25,6 +25,23 @@ init_state = {  # with Immutable
     key: ''
     error: null
   }
+  # select file
+  sfi: {  # select input file
+    app_id: null
+    sub_root: null
+    root_path: null
+    path: null
+    filename: null
+    error: null
+  }
+  sfo: {  # select output file
+    app_id: null
+    sub_root: null
+    root_path: null
+    path: null
+    filename: null
+    error: null
+  }
 
   # TODO
 }

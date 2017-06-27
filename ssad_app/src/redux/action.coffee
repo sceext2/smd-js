@@ -19,6 +19,12 @@ WELCOME_CHECK_KEY = 'welcome_check_key'
 WELCOME_KEY_OK = 'welcome_key_ok'
 WELCOME_KEY_ERR = 'welcome_key_err'
 
+# select file
+SF_RESET = 'sf_reset'
+SF_MSG = 'sf_msg'
+SF_CHANGE_FILENAME = 'sf_change_filename'
+SF_OK = 'sf_ok'
+
 
 # nav
 nav_back = ->
@@ -84,6 +90,37 @@ wel_key_err = (error) ->
     payload: error
   }
 
+# select file
+sf_reset = (type) ->
+  {
+    type: SF_RESET
+    payload: type  # 'sfi' / 'sfo'
+  }
+sf_msg = (type, msg) ->
+  {
+    type: SF_MSG
+    payload: {
+      type  # 'sfi' / 'sfo'
+      msg
+    }
+  }
+sf_change_filename = (type, filename) ->
+  {
+    type: SF_CHANGE_FILENAME
+    payload: {
+      type
+      filename
+    }
+  }
+sf_ok = (type) ->
+  (dispatch, getState) ->
+    dispatch {
+      type: SF_OK
+      payload: type
+    }
+    # TODO
+    await return
+
 
 module.exports = {
   NAV_BACK
@@ -95,6 +132,11 @@ module.exports = {
   WELCOME_KEY_OK
   WELCOME_KEY_ERR
 
+  SF_RESET
+  SF_MSG
+  SF_CHANGE_FILENAME
+  SF_OK
+
   nav_back
   nav_go
 
@@ -103,4 +145,9 @@ module.exports = {
   wel_check_key  # thunk
   wel_key_ok
   wel_key_err
+
+  sf_reset
+  sf_msg
+  sf_change_filename
+  sf_ok  # thunk
 }

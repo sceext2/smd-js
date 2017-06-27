@@ -6,6 +6,7 @@ state = require './state'
 ac = require './action'
 
 
+# nav
 _nav_back = ($$o) ->
   # check can go back
   stack = $$o.getIn(['nav', 'stack']).toJS()
@@ -37,6 +38,30 @@ _nav_go = ($$o, page) ->
   $$o = $$o.setIn ['nav', 'current'], page
   $$o
 
+# select file
+_sf_reset = ($$o, payload) ->
+  # reset filename and error ?
+  $$o = $$o.setIn [payload, 'filename'], null
+  $$o = $$o.setIn [payload, 'error'], null
+
+_sf_msg = ($$o, payload) ->
+  t = payload.type  # 'sfi' / 'sfo'
+  msg = payload.msg
+  d = msg.payload
+  # save common data
+  $$o = $$o.setIn [t, 'app_id'], d.app_id
+  $$o = $$o.setIn [t, 'sub_root'], d.sub_root
+  $$o = $$o.setIn [t, 'root_path'], d.root_path
+  $$o = $$o.setIn [t, 'path'], d.path
+  # check msg type
+  switch msg.type
+    when 'error'
+      $$o = $$o.setIn [t, 'error'], d.error
+    #when 'load_dir'
+      # TODO reset filename ?
+    when 'select_file'
+      $$o = $$o.setIn [t, 'filename'], d.filename
+  $$o
 
 _check_init_state = ($$state) ->
   $$o = $$state
@@ -57,7 +82,9 @@ reducer = ($$state, action) ->
       $$o = $$o.setIn ['welcome', 'app_id'], action.payload
     when ac.WELCOME_CHANGE_KEY
       $$o = $$o.setIn ['welcome', 'key'], action.payload
-    #when ac.WELCOME_CHECK_KEY
+    when ac.WELCOME_CHECK_KEY
+      # reset error
+      $$o = $$o.setIn ['welcome', 'error'], null
     when ac.WELCOME_KEY_OK
       # update app_id / ssad_key
       $$o = $$o.set 'app_id', $$o.getIn(['welcome', 'app_id'])
@@ -67,6 +94,15 @@ reducer = ($$state, action) ->
     when ac.WELCOME_KEY_ERR
       # TODO improve error style ?
       $$o = $$o.setIn ['welcome', 'error'], action.payload.toString()
+    # select file
+    when ac.SF_RESET
+      $$o = _sf_reset $$o, action.payload
+    when ac.SF_MSG
+      $$o = _sf_msg $$o, action.payload
+    when ac.SF_CHANGE_FILENAME
+      p = action.payload
+      $$o = $$o.setIn [p.type, 'filename'], p.filename
+    #when ac.SF_OK  # TODO
   $$o
 
 # not use  redux.combineReducers

@@ -43,5 +43,44 @@
     }
   }
 
+  // page select_file
+  .page_select_file {
+    .foot {
+      flex: initial;
+      flex-shrink: 0;
+      padding: 1rem;
+      padding-top: 0;
+
+      background-color: @co_bg_nav;
+      .form-group {
+        margin: 0;
+      }
+      .path {
+        margin-bottom: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .label {
+          color: @co_text_sec;
+          margin-left: 0;
+          padding-left: 0;
+          flex: initial;
+          flex-shrink: 0;
+        }
+        .value {
+          color: @co_text;
+          word-break: break-all;
+          font-size: 0.8em;
+          flex: 1;
+        }
+      }
+
+      button {
+        width: 5em;
+      }
+    }
+  }
+
   // TODO
 }
