@@ -57,12 +57,9 @@ mapStateToProps = ($$state, props) ->
     path_sfo
     filename_sfi
     filename_sfo
-    # TODO select file error ?
 
     # logs
     logs: $$state.get('log').toJS()
-
-    # TODO
   }
 
 mapDispatchToProps = (dispatch, props) ->

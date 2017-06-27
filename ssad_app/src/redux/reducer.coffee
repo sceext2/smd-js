@@ -65,7 +65,6 @@ _sf_msg = ($$o, payload) ->
     when 'error'
       $$o = $$o.setIn [t, 'error'], d.error
     #when 'load_dir'
-      # TODO reset filename ?
     when 'select_file'
       $$o = $$o.setIn [t, 'filename'], d.filename
   $$o

@@ -64,7 +64,6 @@ init = ->
   console.log "DEBUG: start init "
   # render root element
   ReactDOM.render (cE O), document.getElementById('root')
-  # TODO
   await return
 
 _start_init = ->

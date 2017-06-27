@@ -47,8 +47,6 @@ init_state = {  # with Immutable
   text_output: ''
   # logs
   log: []
-
-  # TODO
 }
 
 module.exports = init_state

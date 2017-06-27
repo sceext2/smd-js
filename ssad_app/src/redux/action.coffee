@@ -207,7 +207,32 @@ compile = ->
     _log "DEBUG: [ OK ] compile done."
     # save result
     dispatch change_output(result)
-    # TODO save result to output file ?
+    # save result to output file
+    _try_put_file dispatch, $$state, _log, result
+
+_try_put_file = (dispatch, $$state, _log, result) ->
+  # check put file
+  path_ = $$state.getIn ['sfo', 'path']
+  filename = $$state.getIn ['sfo', 'filename']
+  if ((! path_?) || ('' == path_)) || ((! filename?) || ('' == filename))
+    return
+
+  opt = {
+    app_id: $$state.getIn ['sfo', 'app_id']
+    sub_root: $$state.getIn ['sfo', 'sub_root']
+    root_path: $$state.getIn ['sfo', 'root_path']
+    path: $$state.getIn ['sfo', 'path']
+    filename: $$state.getIn ['sfo', 'filename']
+
+    ssad_key: $$state.get 'ssad_key'
+  }
+  filename = path.join opt.path, opt.filename
+  _log "DEBUG: put #{filename}"
+  try
+    await ssad_server_api.put_text_file filename, opt, result
+    _log "DEBUG: [ OK ] save result file done."
+  catch e
+    _log "ERROR: can not save result: #{e.toString()}"
 
 
 module.exports = {
