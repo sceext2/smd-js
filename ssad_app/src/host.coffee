@@ -45,6 +45,10 @@ Host = cC {
             on_goto_output: @props.nav_goto_output
             on_compile: @props.on_compile
             on_back: @props.nav_back
+
+            text_input: @props.text_input
+            output_path: @props.path_sfo
+            output_filename: @props.filename_sfo
             })
         )
         # page about
@@ -61,8 +65,12 @@ Host = cC {
           },
           (cE PageIO, {
             title: 'Input'
+            placeholder: 'input text'
+            text: @props.text_input
+
             on_back: @props.nav_back
             on_goto_select_file: @props.nav_goto_sfi
+            on_change: @props.on_change_input
             })
         )
         # page output
@@ -71,8 +79,14 @@ Host = cC {
           },
           (cE PageIO, {
             title: 'Output'
+            placeholder: 'output text'
+            text: @props.text_output
+            path: @props.path_sfo
+            filename: @props.filename_sfo
+
             on_back: @props.nav_back
             on_goto_select_file: @props.nav_goto_sfo
+            on_change: @props.on_change_output
             })
         )
         # page select file (i)
@@ -80,15 +94,16 @@ Host = cC {
           state: @props.nav_state_select_file_i
           },
           (cE PageSelectFile, {
-            on_back: @props.nav_back
-            on_reset: @props.on_reset_sfi
             app_id: @props.app_id
             ssad_key: @props.ssad_key
+            path: @props.path_sfi
+            filename: @props.filename_sfi
+
+            on_back: @props.nav_back
+            on_reset: @props.on_reset_sfi
             on_msg: @props.on_msg_sfi
             on_change_filename: @props.on_change_filename_sfi
             on_ok: @props.on_ok_sfi
-            path: @props.path_sfi
-            filename: @props.filename_sfi
             })
         )
         # page select file (o)
@@ -96,15 +111,16 @@ Host = cC {
           state: @props.nav_state_select_file_o
           },
           (cE PageSelectFile, {
-            on_back: @props.nav_back
-            on_reset: @props.on_reset_sfo
             app_id: @props.app_id
             ssad_key: @props.ssad_key
-            on_msg: @props.on_msg_sfo
-            on_change_filename: @props.on_change_filename_sfo
-            on_ok: @props.on_ok_sfo
             path: @props.path_sfo
             filename: @props.filename_sfo
+            hide_ok_button: true
+
+            on_back: @props.nav_back
+            on_reset: @props.on_reset_sfo
+            on_msg: @props.on_msg_sfo
+            on_change_filename: @props.on_change_filename_sfo
             })
         )
       )

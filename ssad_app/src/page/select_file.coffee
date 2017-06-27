@@ -23,6 +23,50 @@ PageSelectFile = cC {
   _on_change_filename: (event) ->
     @props.on_change_filename event.target.value
 
+  _is_disable_ok_button: ->
+    # check filename is null
+    if (! @props.filename?) || ('' == @props.filename)
+      return true
+    # check path is null
+    if (! @props.path?) || ('' == @props.path)
+      return true
+    false
+
+  _is_disable_filename: ->
+    # check path is null
+    if (! @props.path?) || ('' == @props.path)
+      return true
+    false
+
+  _render_filename: ->
+    if @props.hide_ok_button
+      (cE FormControl, {
+        type: 'text'
+        value: @props.filename
+        placeholder: 'filename'
+        disabled: @_is_disable_filename()
+        onChange: @_on_change_filename
+        })
+    else
+      (cE InputGroup, null,
+        (cE FormControl, {
+          type: 'text'
+          value: @props.filename
+          placeholder: 'filename'
+          disabled: @_is_disable_filename()
+          onChange: @_on_change_filename
+          })
+        (cE InputGroup.Button, null,
+          (cE Button, {
+            bsStyle: 'primary'
+            disabled: @_is_disable_ok_button()
+            onClick: @props.on_ok
+            },
+            'OK'
+          )
+        )
+      )
+
   render: ->
     (cE 'div', {
       className: 'page_select_file'
@@ -59,21 +103,7 @@ PageSelectFile = cC {
             )
           )
           (cE FormGroup, null,
-            (cE InputGroup, null,
-              (cE FormControl, {
-                type: 'text'
-                value: @props.filename
-                placeholder: 'filename'
-                onChange: @_on_change_filename
-                })
-              (cE InputGroup.Button, null,
-                (cE Button, {
-                  onClick: @props.on_ok
-                  },
-                  'OK'
-                )
-              )
-            )
+            @_render_filename()
           )
         )
       )

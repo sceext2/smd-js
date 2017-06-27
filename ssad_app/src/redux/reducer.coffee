@@ -106,6 +106,11 @@ reducer = ($$state, action) ->
       p = action.payload
       $$o = $$o.setIn [p.type, 'filename'], p.filename
     #when ac.SF_OK  # TODO
+    # input/output
+    when ac.TEXT_CHANGE_INPUT
+      $$o = $$o.set 'text_input', action.payload
+    when ac.TEXT_CHANGE_OUTPUT
+      $$o = $$o.set 'text_output', action.payload
   $$o
 
 # not use  redux.combineReducers

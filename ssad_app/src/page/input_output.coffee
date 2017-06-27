@@ -1,6 +1,8 @@
 # input_output.coffee, smd-js/ssad_app/src/page/
 # css class: page_io
 
+path = require 'path'
+
 { createElement: cE } = require 'react'
 cC = require 'create-react-class'
 
@@ -18,16 +20,43 @@ MainButton = require '../sub/main_button'
 PageIO = cC {
   displayName: 'PageIO'
 
+  _on_change: (event) ->
+    @props.on_change event.target.value
+
+  _check_path_filename: ->
+    if (! @props.path?) || ('' == @props.path)
+      return false
+    if (! @props.filename?) || ('' == @props.filename)
+      return false
+    true
+
   _render_form: ->
-    # TODO
-    (cE 'form', null,
-      (cE FormGroup, null,
-        (cE FormControl, {
-          componentClass: 'textarea'
-          placeholder: 'TODO'
-          })
+    if @_check_path_filename()
+      (cE 'div', {
+        className: 'output_to'
+        },
+        (cE 'span', {
+          className: 'label'
+          },
+          'Output to'
+        )
+        (cE 'span', {
+          className: 'value'
+          },
+          path.join @props.path, @props.filename
+        )
       )
-    )
+    else
+      (cE 'form', null,
+        (cE FormGroup, null,
+          (cE FormControl, {
+            componentClass: 'textarea'
+            placeholder: @props.placeholder
+            value: @props.text
+            onChange: @_on_change
+            })
+        )
+      )
 
   render: ->
     (cE 'div', {

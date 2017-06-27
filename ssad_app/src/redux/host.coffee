@@ -47,6 +47,10 @@ mapStateToProps = ($$state, props) ->
     wel_key
     wel_error: $$state.getIn ['welcome', 'error']
 
+    # input/output page
+    text_input: $$state.get 'text_input'
+    text_output: $$state.get 'text_output'
+
     # select file
     path_sfi
     path_sfo
@@ -85,6 +89,12 @@ mapDispatchToProps = (dispatch, props) ->
     on_compile: ->
       # TODO
 
+    # input/output page
+    on_change_input: (text) ->
+      dispatch action.change_input(text)
+    on_change_output: (text) ->
+      dispatch action.change_output(text)
+
     # page select file
     on_reset_sfi: ->
       dispatch action.sf_reset 'sfi'
@@ -99,9 +109,7 @@ mapDispatchToProps = (dispatch, props) ->
     on_change_filename_sfo: (text) ->
       dispatch action.sf_change_filename 'sfo', text
     on_ok_sfi: ->
-      dispatch action.sf_ok 'sfi'
-    on_ok_sfo: ->
-      dispatch action.sf_ok 'sfo'
+      dispatch action.sf_ok()
   }
 
 O = connect(mapStateToProps, mapDispatchToProps)(Host)

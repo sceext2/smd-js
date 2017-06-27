@@ -23,7 +23,11 @@ WELCOME_KEY_ERR = 'welcome_key_err'
 SF_RESET = 'sf_reset'
 SF_MSG = 'sf_msg'
 SF_CHANGE_FILENAME = 'sf_change_filename'
-SF_OK = 'sf_ok'
+SF_OK = 'sf_ok'  # sfi OK
+
+# input / output
+TEXT_CHANGE_INPUT = 'text_change_input'
+TEXT_CHANGE_OUTPUT = 'text_change_output'
 
 
 # nav
@@ -115,14 +119,27 @@ sf_change_filename = (type, filename) ->
       filename
     }
   }
-sf_ok = (type) ->
+sf_ok = ->
   (dispatch, getState) ->
     dispatch {
       type: SF_OK
-      payload: type
     }
+    # TODO load sfi
     # TODO
     await return
+
+# input/output
+change_input = (text) ->
+  {
+    type: TEXT_CHANGE_INPUT
+    payload: text
+  }
+
+change_output = (text) ->
+  {
+    type: TEXT_CHANGE_OUTPUT
+    payload: text
+  }
 
 
 module.exports = {
@@ -140,6 +157,9 @@ module.exports = {
   SF_CHANGE_FILENAME
   SF_OK
 
+  TEXT_CHANGE_INPUT
+  TEXT_CHANGE_OUTPUT
+
   nav_back
   nav_go
 
@@ -153,4 +173,7 @@ module.exports = {
   sf_msg
   sf_change_filename
   sf_ok  # thunk
+
+  change_input
+  change_output
 }

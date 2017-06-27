@@ -13,6 +13,24 @@ MainButton = require '../sub/main_button'
 PageMain = cC {
   displayName: 'PageMain'
 
+  _input_state: ->
+    none = 'None'
+    if ! @props.text_input?
+      return none
+    len = @props.text_input.length
+    if len < 1
+      return none
+    else
+      return len.toString()
+
+  _output_state: ->
+    textarea = 'Textarea'
+    if (! @props.output_path?) || ('' == @props.output_path)
+      return textarea
+    if (! @props.output_filename?) || ('' == @props.output_filename)
+      return textarea
+    return @props.output_filename
+
   render: ->
     (cE 'div', {
       className: 'page_main'
@@ -29,15 +47,15 @@ PageMain = cC {
         },
         (cE SubItem, {
           left: 'Input'
-          right_text: 'TODO'
+          right_text: @_input_state()
           on_click: @props.on_goto_input
           })
         (cE SubItem, {
           left: 'Output'
-          right_text: 'TODO'
+          right_text: @_output_state()
           on_click: @props.on_goto_output
           })
-        # TODO
+        # TODO logs ?
         (cE NullFill)
         (cE MainButton, {
           text: 'Compile'

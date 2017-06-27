@@ -42,6 +42,9 @@ init_state = {  # with Immutable
     filename: null
     error: null
   }
+  # input / output
+  text_input: ''
+  text_output: ''
 
   # TODO
 }
