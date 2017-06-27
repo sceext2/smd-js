@@ -25,6 +25,11 @@ PageMain = cC {
 
   _output_state: ->
     textarea = 'Textarea'
+    # check text_output
+    len = 0
+    if @props.text_output? && (@props.text_output.length > 0)
+      textarea = @props.text_output.length.toString()
+    # check output path/filename
     if (! @props.output_path?) || ('' == @props.output_path)
       return textarea
     if (! @props.output_filename?) || ('' == @props.output_filename)
@@ -52,6 +57,7 @@ PageMain = cC {
           })
         (cE SubItem, {
           left: 'Output'
+          right_small: true
           right_text: @_output_state()
           on_click: @props.on_goto_output
           })

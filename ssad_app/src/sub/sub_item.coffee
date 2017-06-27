@@ -9,9 +9,13 @@ SubItem = cC {
   displayName: 'SubItem'
 
   _render_right_text: ->
+    right_class = 'right_text'
+    if @props.right_small
+      right_class += ' small'
+
     if @props.right_text?
       (cE 'span', {
-        className: 'right_text'
+        className: right_class
         },
         @props.right_text
       )

@@ -144,11 +144,24 @@ sf_ok = ->
     try
       text = await ssad_server_api.load_text_file path.join(opt.path, opt.filename), opt
       dispatch change_input(text)
-      # TODO auto-gen output filename
+      # auto-gen output filename
+      dispatch sf_change_filename('sfo', _make_output_filename(opt.filename))
       # go back to input page
       dispatch nav_back()
     catch e
       dispatch load_input_err(e)
+
+_make_output_filename = (raw) ->
+  # only works for endswith `.smd.txt` or `.smd..txt`
+  ext = [
+    '.smd.txt'
+    '.smd..txt'
+  ]
+  out = '.out.txt'
+  for i in ext
+    if raw.endsWith i
+      return raw[0... (raw.length - i.length)] + out
+  return raw + out
 
 # input/output
 change_input = (text) ->
@@ -184,7 +197,10 @@ compile = ->
 
     $$state = getState()
     raw_text = $$state.get 'text_input'
-
+    # check empty input
+    if (! raw_text?) || ('' == raw_text.trim())
+      _log "ERROR: empty input !"
+      return
     _log "DEBUG: start compile .. . "
     # TODO process error ?
     result = await smd_lib.compile raw_text, _log

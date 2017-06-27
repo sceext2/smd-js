@@ -46,6 +46,9 @@ _sf_reset = ($$o, payload) ->
   # sfi reset text_input
   if 'sfi' == payload
     $$o = $$o.set 'text_input', ''
+  # sfo reset text_output
+  if 'sfo' == payload
+    $$o = $$o.set 'text_output', ''
   $$o
 
 _sf_msg = ($$o, payload) ->

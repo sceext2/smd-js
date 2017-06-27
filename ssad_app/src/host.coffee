@@ -47,6 +47,7 @@ Host = cC {
             on_back: @props.nav_back
 
             text_input: @props.text_input
+            text_output: @props.text_output
             output_path: @props.path_sfo
             output_filename: @props.filename_sfo
             logs: @props.logs
