@@ -17,9 +17,15 @@ MainButton = cC {
       )
 
   render: ->
+    click = @props.on_click
+    c = 'sub_main_button'
+    if @props.disabled
+      click = null
+      c += ' disabled'
+
     (cE 'div', {
-      className: 'sub_main_button'
-      onClick: @props.on_click
+      className: c
+      onClick: click
       },
       (cE 'span', {
         className: 'text'

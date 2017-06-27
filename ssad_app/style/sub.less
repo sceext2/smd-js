@@ -128,6 +128,11 @@
       text-align: center;
       padding-right: 1rem;
     }
+
+    &.disabled, &.disabled:hover {
+      cursor: not-allowed;
+      background-color: mix(@co_btn_primary, @co_bg, 50%);
+    }
   }
   // sub_item
   .sub_item {

@@ -23,6 +23,11 @@ PageMain = cC {
     else
       return len.toString()
 
+  _should_disable_main_button: ->
+    if (! @props.text_input?) || (@props.text_input.length < 1)
+      return true
+    false
+
   _output_state: ->
     textarea = 'Textarea'
     # check text_output
@@ -68,6 +73,7 @@ PageMain = cC {
         (cE MainButton, {
           text: 'Compile'
           on_click: @props.on_compile
+          disabled: @_should_disable_main_button()
           })
       )
     )
